@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
         left,
         right
     }
-    public List<RuntimeAnimatorController> animators;
+    public RuntimeAnimatorController animators;
 
     [HideInInspector] public PlayerDir playerDir = PlayerDir.right;
     protected PlayerDir playerDir_past;
@@ -25,15 +25,19 @@ public class Player : MonoBehaviour
 
     float moveSpeed = 6f;
 
+    #region 점프
+    int jumCount = 0;
     float jumpPower = 15f;
     bool jumped = false;
     bool isGround = true;
+    #endregion
     protected virtual void Init()
     {
         GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
 
+        animator.runtimeAnimatorController = animators;
     }
     void Start()
     {
@@ -45,9 +49,11 @@ public class Player : MonoBehaviour
         inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
 
+        JumpAnimation();
+
         Move();
         Jump();
-
+        Attack();
     }
     #region 시선처리
     protected void LookDir()
@@ -71,14 +77,19 @@ public class Player : MonoBehaviour
     {
         if (jumped != true)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (jumCount != 2)
             {
-                jumped = true;
-                rigid.velocity = Vector2.zero;
-                //animator.SetBool("Dash", false);
-                rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    jumCount++;
+                    rigid.velocity = Vector2.zero;
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpPower);
+                }
             }
-            
+        }
+        else if (jumCount == 2)
+        {
+            jumped = true;
         }
     }
     #endregion
@@ -87,8 +98,11 @@ public class Player : MonoBehaviour
     protected void Move()
     {
         rigid.velocity = new Vector2(inputX * moveSpeed, rigid.velocity.y);
-        if (inputX != 0)
+        if (inputX == 0)
+            animator.SetBool("Move", false);
+        else
         {
+            animator.SetBool("Move", true);
             playerDir = inputX > 0 ? PlayerDir.right : playerDir = PlayerDir.left;
         }
 
@@ -96,11 +110,59 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    #region 점프 애니메이션
+    protected void JumpAnimation()
+    {
+        if (rigid.velocity.y > 0.05f)
+        {
+            animator.SetBool("Jump", true);
+            animator.SetBool("Fall", false);
+        }
+        else if (rigid.velocity.y < -0.05f)
+        {
+            animator.SetBool("Fall", true);
+            animator.SetBool("Jump", false);
+        }
+        else
+        {
+            animator.SetBool("Jump", false);
+            animator.SetBool("Fall", false);
+        }
+    }
+    #endregion
+
+    #region 공격
+    protected void Attack()
+    {
+        if (!Input.GetKeyDown(KeyCode.X))
+            return;
+
+        animator.SetTrigger("Attack");
+        
+    }
+    //공격 A,B - 애니메이션 첫 프레임 event
+    protected void EventStopMove()
+    {
+        rigid.velocity = new Vector2(0, rigid.velocity.y);
+    }
+
+    //공격 A,B - 무기를 휘두르는 순간 event
+    protected void EventMoveAttack()
+    {
+        //공격시, 바라보는 방향을 입력하고있으면 전진
+        if ((inputX > 0 && playerDir_past == PlayerDir.right) ||
+            (inputX < 0 && playerDir_past == PlayerDir.left))
+            rigid.velocity = transform.right * moveSpeed + transform.up * rigid.velocity.y;
+    }
+
+    #endregion
+
     protected void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("IsGround"))
         {
             jumped = false;
+            jumCount = 0;
         }
     }
 
