@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
         left,
         right
     }
+
     public RuntimeAnimatorController animators;
 
     [HideInInspector] public PlayerDir playerDir = PlayerDir.right;
@@ -22,14 +23,15 @@ public class Player : MonoBehaviour
     [HideInInspector]  private float inputX;
     [HideInInspector]  private float inputY;
 
-
     float moveSpeed = 6f;
 
     #region 점프
     int jumCount = 0;
     float jumpPower = 15f;
     bool jumped = false;
-    bool isGround = true;
+    //bool isGround = true;
+
+    protected bool canInput = true;
     #endregion
     protected virtual void Init()
     {
@@ -50,6 +52,9 @@ public class Player : MonoBehaviour
         inputY = Input.GetAxisRaw("Vertical");
 
         JumpAnimation();
+
+        if (!canInput)
+            return;
 
         Move();
         Jump();
@@ -97,9 +102,14 @@ public class Player : MonoBehaviour
     #region 무브
     protected void Move()
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+            return;
+
         rigid.velocity = new Vector2(inputX * moveSpeed, rigid.velocity.y);
+
         if (inputX == 0)
             animator.SetBool("Move", false);
+
         else
         {
             animator.SetBool("Move", true);
@@ -138,8 +148,8 @@ public class Player : MonoBehaviour
             return;
 
         animator.SetTrigger("Attack");
-        
     }
+
     //공격 A,B - 애니메이션 첫 프레임 event
     protected void EventStopMove()
     {
@@ -156,6 +166,16 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    protected IEnumerator EventCStopInput()
+    {
+        canInput = false;
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9f)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        canInput = true;
+    }
 
     protected void OnCollisionEnter2D(Collision2D col)
     {
