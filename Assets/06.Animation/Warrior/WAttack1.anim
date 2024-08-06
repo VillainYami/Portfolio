@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack1
+  m_Name: WAttack1
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -35,6 +35,8 @@ AnimationClip:
       value: {fileID: -2457495719821501130, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
     - time: 0.5833333
       value: {fileID: 2335949746256416935, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
+    - time: 0.6666667
+      value: {fileID: 2281034495841147979, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -62,12 +64,13 @@ AnimationClip:
     - {fileID: -3610891807505899824, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
     - {fileID: -2457495719821501130, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
     - {fileID: 2335949746256416935, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
+    - {fileID: 2281034495841147979, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666666
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -90,28 +93,28 @@ AnimationClip:
   - time: 0
     functionName: EventStopMove
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: b3330d4abac84e442b4d8a62d6a6ef45, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0
     functionName: EventCStopInput
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: b3330d4abac84e442b4d8a62d6a6ef45, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.25
     functionName: EventMoveAttack
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: b3330d4abac84e442b4d8a62d6a6ef45, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5833333
-    functionName: EventStopMove
+  - time: 0.5
+    functionName: Attack2
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: b3330d4abac84e442b4d8a62d6a6ef45, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
