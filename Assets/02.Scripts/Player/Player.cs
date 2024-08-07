@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     float moveSpeed = 6f;
 
+
+
     #region 점프
     int jumCount = 0;
     float jumpPower = 15f;
@@ -148,6 +150,11 @@ public class Player : MonoBehaviour
             return;
 
         animator.SetTrigger("Attack");
+    }
+    protected void NEXTAttack()
+    {
+        if (Input.GetKey(KeyCode.X))
+            animator.SetTrigger("Attack");
     }
 
     //공격 A,B - 애니메이션 첫 프레임 event
