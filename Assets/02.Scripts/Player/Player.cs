@@ -25,7 +25,15 @@ public class Player : MonoBehaviour
 
     float moveSpeed = 6f;
 
+    protected float originalGravity = 6;
 
+    #region 대쉬
+    float dashPower = 30f;
+    float dashCoolTime = 0.8f;
+    float dashTime = 0.2f;
+    protected bool canDash = true;
+    bool isDashing = false;
+    #endregion
 
     #region 점프
     int jumCount = 0;
@@ -61,6 +69,9 @@ public class Player : MonoBehaviour
         Move();
         Jump();
         Attack();
+
+        if (Input.GetKeyDown(KeyCode.Z) && canDash)
+            StartCoroutine("CDash");
     }
     #region 시선처리
     protected void LookDir()
@@ -82,6 +93,9 @@ public class Player : MonoBehaviour
     #region 점프
     protected void Jump()
     {
+        if (!Input.GetKeyDown(KeyCode.C))
+            return;
+
         if (jumped != true)
         {
             if (jumCount != 2)
@@ -98,13 +112,17 @@ public class Player : MonoBehaviour
         {
             jumped = true;
         }
+
+        SetGravity(true);
+        animator.SetBool("Dash", false);
     }
     #endregion
+
 
     #region 무브
     protected void Move()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (isDashing || animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
             return;
 
         rigid.velocity = new Vector2(inputX * moveSpeed, rigid.velocity.y);
@@ -146,7 +164,7 @@ public class Player : MonoBehaviour
     #region 공격
     protected void Attack()
     {
-        if (!Input.GetKeyDown(KeyCode.X))
+        if (!Input.GetKeyDown(KeyCode.X) || isDashing)
             return;
 
         animator.SetTrigger("Attack");
@@ -173,6 +191,32 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+    #region 대쉬
+    protected IEnumerator CDash()
+    {
+        canDash = false;
+        isDashing = true;
+
+        animator.SetBool("Dash", true);
+        SetGravity(false);
+        playerDir = inputX < 0 ? PlayerDir.left : inputX > 0 ? PlayerDir.right : playerDir;
+        float dir = playerDir == PlayerDir.right ? 1 : -1;
+        LookDir();
+        rigid.velocity = new Vector2(dir * dashPower, 0);
+
+        yield return new WaitForSeconds(dashTime);
+
+        SetGravity(true);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("WDash"))
+            rigid.velocity = Vector2.zero;
+
+        isDashing = false;
+        animator.SetBool("Dash", false);
+
+        yield return new WaitForSeconds(dashCoolTime);
+        canDash = true;
+    }
+    #endregion
 
     protected IEnumerator EventCStopInput()
     {
@@ -191,6 +235,10 @@ public class Player : MonoBehaviour
             jumped = false;
             jumCount = 0;
         }
+    }
+    protected void SetGravity(bool On)
+    {
+        rigid.gravityScale = On ? originalGravity : 0;
     }
 
 }
