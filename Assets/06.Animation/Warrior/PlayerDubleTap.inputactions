@@ -1,0 +1,67 @@
+{
+    "name": "PlayerDubleTap",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "581fa090-02f6-4fa5-96a2-2b19ea913b73",
+            "actions": [
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "18672fc2-33ef-440d-b1cc-d03374a71059",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bfac0e96-cd79-4b16-b7f0-3b5b4bc07383",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "daaea0c3-a911-49b8-bfec-abf941e7381e",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40268b32-d992-4790-be2b-978085700cc1",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3403e2a0-9f6a-4e1a-b828-10096b724a98",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
