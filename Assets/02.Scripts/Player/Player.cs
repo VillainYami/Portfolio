@@ -35,6 +35,14 @@ public class Player : MonoBehaviour
     bool isslide = false;
     #endregion
 
+    #region 대쉬
+    float dashPower = 40f;
+    float dashCoolTime = 0.8f;
+    float dashTime = 0.2f;
+    protected bool candash = true;
+    bool isdash = false;
+    #endregion
+
     #region 점프
     int jumCount = 0;
     float jumpPower = 15f;
@@ -72,7 +80,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && canslide)
             StartCoroutine("CSlide");
+
+        if (Input.GetKeyDown(KeyCode.Space) && candash)
+            StartCoroutine("CDash");
+
     }
+
     #region 시선처리
     protected void LookDir()
     {
@@ -115,6 +128,7 @@ public class Player : MonoBehaviour
 
         SetGravity(true);
         animator.SetBool("Slide", false);
+        animator.SetBool("Dash", false);
     }
     #endregion
 
@@ -122,7 +136,7 @@ public class Player : MonoBehaviour
     #region 무브
     protected void Move()
     {
-        if (isslide || animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (isslide || isdash || animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
             return;
 
         rigid.velocity = new Vector2(inputX * moveSpeed, rigid.velocity.y);
@@ -164,15 +178,23 @@ public class Player : MonoBehaviour
     #region 공격
     protected void Attack()
     {
-        if (!Input.GetKeyDown(KeyCode.X) || isslide)
+        if (!Input.GetKeyDown(KeyCode.X) || isslide || isdash)
             return;
 
         animator.SetTrigger("Attack");
     }
     protected void NEXTAttack()
     {
+        if (isdash || isslide)
+            return;
+
         if (Input.GetKey(KeyCode.X))
             animator.SetTrigger("Attack");
+    }
+    protected void DashAttack()
+    {
+        if (Input.GetKey(KeyCode.X))
+            animator.SetTrigger("DashAttack");
     }
 
     //공격 A,B - 애니메이션 첫 프레임 event
@@ -189,8 +211,8 @@ public class Player : MonoBehaviour
             (inputX < 0 && playerDir_past == PlayerDir.left))
             rigid.velocity = transform.right * moveSpeed + transform.up * rigid.velocity.y;
     }
-
     #endregion
+
     #region 슬라이드
     protected IEnumerator CSlide()
     {
@@ -218,7 +240,34 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    
+    #region 대쉬
+    protected IEnumerator CDash()
+    {
+        candash = false;
+        isdash = true;
+
+        animator.SetBool("Dash", true);
+        SetGravity(false);
+        playerDir = inputX < 0 ? PlayerDir.left : inputX > 0 ? PlayerDir.right : playerDir;
+        float dir = playerDir == PlayerDir.right ? 1 : -1;
+        LookDir();
+        rigid.velocity = new Vector2(dir * dashPower, 0);
+
+        yield return new WaitForSeconds(dashTime);
+
+        SetGravity(true);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("WDash"))
+            rigid.velocity = Vector2.zero;
+
+        isdash = false;
+        animator.SetBool("Dash", false);
+
+        yield return new WaitForSeconds(dashCoolTime);
+        candash = true;
+    }
+    #endregion
+
+
     protected IEnumerator EventCStopInput()
     {
         canInput = false;
