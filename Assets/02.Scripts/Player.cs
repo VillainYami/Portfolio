@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public RuntimeAnimatorController animators;
 
+    [HideInInspector] private PlayerData pd;
     [HideInInspector] public PlayerDir playerDir = PlayerDir.right;
     protected PlayerDir playerDir_past;
 
@@ -26,6 +27,13 @@ public class Player : MonoBehaviour
     float moveSpeed = 6f;
 
     protected float originalGravity = 6;
+
+    #region 플레이어 상태
+    [HideInInspector] private SpriteRenderer sprd;
+    public bool isDead = false;
+    protected bool isUnbeat = false;
+    protected float unbeatTime = 1f;
+    #endregion
 
     #region 슬라이드
     float slidePower = 30f;
@@ -56,6 +64,8 @@ public class Player : MonoBehaviour
         GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        pd = transform.GetChild(0).GetComponent<PlayerData>();
+        sprd = GetComponent<SpriteRenderer>();
 
         animator.runtimeAnimatorController = animators;
     }
@@ -84,6 +94,8 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && candash)
             StartCoroutine("CDash");
 
+        //임시 피격데미지
+        PDamage();
     }
 
     #region 시선처리
@@ -211,6 +223,17 @@ public class Player : MonoBehaviour
             (inputX < 0 && playerDir_past == PlayerDir.left))
             rigid.velocity = transform.right * moveSpeed + transform.up * rigid.velocity.y;
     }
+
+    //공격 데미지 판정 event
+    /*protected void EventDamage()
+    {
+        foreach (var enemy in atBox.enemies)
+        {
+            SetDamage(enemy, Damage);
+        }
+    }
+
+    public void SetDamage(Enemy enemy, float damage) => enemy.Damaged(damage);*/
     #endregion
 
     #region 슬라이드
@@ -267,6 +290,44 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    #region 피격
+    public void Damaged(float damage)
+    {
+        if (isDead || isUnbeat)
+            return;
+
+        pd.HP -= damage;
+        if (pd.HP <= 0)
+        {
+            pd.HP = 0;
+            animator.SetTrigger("Die");
+            rigid.velocity = Vector2.zero;
+            isDead = true;
+        }
+        else
+        {
+            StartCoroutine("UnbeatTime");
+        }
+    }
+    //피격시 반짝거림
+    IEnumerator UnbeatTime()
+    {
+        isUnbeat = true;
+        for (int i = 0; i < unbeatTime * 10; ++i)
+        {
+            if (i % 2 == 0)
+                sprd.color = new Color(1f, 1f, 1f, 0.35f);
+            else
+                sprd.color = new Color(1f, 1f, 1f, 0.7f);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        sprd.color = new Color(1f, 1f, 1f, 1f);
+        isUnbeat = false;
+        yield return null;
+    }
+    #endregion
 
     protected IEnumerator EventCStopInput()
     {
@@ -291,4 +352,11 @@ public class Player : MonoBehaviour
         rigid.gravityScale = On ? originalGravity : 0;
     }
 
+    public void PDamage()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Damaged(50);
+        }
+    }
 }
