@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
 
     protected bool canInput = true;
     #endregion
+
+    #region 인잇
     protected virtual void Init()
     {
         GetComponent<BoxCollider2D>();
@@ -69,6 +71,7 @@ public class Player : MonoBehaviour
 
         animator.runtimeAnimatorController = animators;
     }
+    #endregion
     void Start()
     {
         Init();
@@ -76,6 +79,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
+
         inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
 
@@ -329,6 +334,7 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    // 키 입력 금지
     protected IEnumerator EventCStopInput()
     {
         canInput = false;
