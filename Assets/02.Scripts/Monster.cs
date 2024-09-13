@@ -23,6 +23,8 @@ public enum EnemyState
 
 public abstract class Monster : MonoBehaviour
 {
+    public abstract void Init();
+
     public EnemyData ed = new EnemyData();
 
     public Animator anim;
