@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public PlayerDir playerDir = PlayerDir.right;
     protected PlayerDir playerDir_past;
 
+    public AtkBoxPlayer atBox;
     [HideInInspector] public Animator animator;
     protected Rigidbody2D rigid;
 
@@ -25,7 +26,8 @@ public class Player : MonoBehaviour
     [HideInInspector]  private float inputY;
 
     float moveSpeed = 6f;
-
+    private float damage = 15;
+    public float Damage { get; set; }
     protected float originalGravity = 6;
 
     #region 플레이어 상태
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
         sprd = GetComponent<SpriteRenderer>();
 
         animator.runtimeAnimatorController = animators;
+        atBox.player = this;
     }
     #endregion
     void Start()
@@ -200,6 +203,7 @@ public class Player : MonoBehaviour
 
         animator.SetTrigger("Attack");
     }
+
     protected void NEXTAttack()
     {
         if (isdash || isslide)
@@ -208,6 +212,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.X))
             animator.SetTrigger("Attack");
     }
+
     protected void DashAttack()
     {
         if (Input.GetKey(KeyCode.X))
@@ -230,7 +235,7 @@ public class Player : MonoBehaviour
     }
 
     //공격 데미지 판정 event
-    /*protected void EventDamage()
+    protected void EventDamage()
     {
         foreach (var enemy in atBox.enemies)
         {
@@ -238,7 +243,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetDamage(Enemy enemy, float damage) => enemy.Damaged(damage);*/
+    public void SetDamage(Monster enemy, float damage) => enemy.Damaged(damage);
+
+    protected void OnATKBOX()
+    {
+        atBox.gameObject.SetActive(true);
+    }
+    protected void OffATKBOX()
+    {
+        atBox.gameObject.SetActive(false);
+    }
     #endregion
 
     #region 슬라이드

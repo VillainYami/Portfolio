@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9208979057900697776}
   - component: {fileID: 2205380299393818983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,11 +58,10 @@ GameObject:
   - component: {fileID: 2627524715703007210}
   - component: {fileID: 2627524715703007209}
   - component: {fileID: 2627524715703007214}
-  - component: {fileID: 2627524715703007215}
   - component: {fileID: 2627524715703007208}
   - component: {fileID: 2627524715703007213}
   - component: {fileID: 756803563}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -82,6 +81,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9208979057900697776}
+  - {fileID: 8822333462442056702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,32 +153,6 @@ MonoBehaviour:
   playerDir: 1
   animator: {fileID: 0}
   isDead: 0
---- !u!61 &2627524715703007215
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627524715703007211}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: -0.04}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.69, y: 0.44}
-    newSize: {x: 0.18, y: 0.33}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.34}
-  m_EdgeRadius: 0
 --- !u!50 &2627524715703007208
 Rigidbody2D:
   serializedVersion: 4
@@ -237,3 +211,34 @@ CapsuleCollider2D:
   m_Offset: {x: -0.08, y: -0.05}
   m_Size: {x: 0.12, y: 0.32}
   m_Direction: 0
+--- !u!1 &7743519433593443320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8822333462442056702}
+  m_Layer: 6
+  m_Name: AtkBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8822333462442056702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743519433593443320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2627524715703007210}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
