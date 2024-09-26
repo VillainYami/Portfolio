@@ -245,6 +245,7 @@ public class Player : MonoBehaviour
 
     public void SetDamage(Monster enemy, float damage) => enemy.Damaged(damage);
 
+    #region 어택박스
     protected void OnATKBOX()
     {
         atBox.gameObject.SetActive(true);
@@ -253,6 +254,8 @@ public class Player : MonoBehaviour
     {
         atBox.gameObject.SetActive(false);
     }
+    #endregion
+
     #endregion
 
     #region 슬라이드
