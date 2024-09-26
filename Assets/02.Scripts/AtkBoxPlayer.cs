@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AtkBoxPlayer : MonoBehaviour
 {
-    [HideInInspector] public List<Monster> enemies = new List<Monster>();
+    public List<Monster> enemies = new List<Monster>();
     public Player player;
 
     private void OnEnable() => enemies.Clear();
@@ -21,7 +21,7 @@ public class AtkBoxPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && !enemies.Contains(collision.GetComponent<Monster>()))
+        if (collision.CompareTag("Enemy"))
         {
             Monster enemy = collision.GetComponent<Monster>();
             enemies.Add(enemy);

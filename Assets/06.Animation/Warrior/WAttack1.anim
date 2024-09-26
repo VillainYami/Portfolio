@@ -111,6 +111,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.25
+    functionName: OnATKBOX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.33333334
     functionName: NEXTAttack
     data: 
@@ -120,13 +127,6 @@ AnimationClip:
     messageOptions: 0
   - time: 0.41666666
     functionName: NEXTAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.41666666
-    functionName: OnATKBOX
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

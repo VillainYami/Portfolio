@@ -12,6 +12,7 @@ public struct EnemyData
     public float damage;
     public float atkRange;
     public float atkDelay;
+    public float atkReady;
 
     public bool isDead;
 }
@@ -27,8 +28,8 @@ public enum EnemyState
 public abstract class Monster : MonoBehaviour
 {
     public abstract void Init();
-
     public EnemyData ed = new EnemyData();
+    [SerializeField] private float seehp;
 
     public Animator anim;
     public Transform target;
@@ -100,7 +101,7 @@ public abstract class Monster : MonoBehaviour
             StartCoroutine("Think");
         }
         transform.localScale = flipX ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
-
+        seehp = ed.hp;
     }
 
     public IEnumerator Think()

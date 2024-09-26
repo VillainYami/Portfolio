@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     float moveSpeed = 6f;
     private float damage = 15;
-    public float Damage { get; set; }
+    public float Damage { get { return damage; } }
     protected float originalGravity = 6;
 
     #region 플레이어 상태

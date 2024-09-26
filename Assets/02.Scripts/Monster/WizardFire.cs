@@ -12,6 +12,7 @@ public class WizardFire : Monster
         ed.hp = ed.maxhp;
         ed.damage = 5;
 
+        ed.atkReady = 1;
         ed.atkRange = 2.5f;
         ed.atkDelay = 2;
     }
