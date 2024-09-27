@@ -152,8 +152,8 @@ public abstract class Monster : MonoBehaviour
     {
         ed.state = EnemyState.Idle;
         atkBox.SetActive(false);
-        //anim.ResetTrigger("Attack");
-        //anim.ResetTrigger("Hit");
+        anim.ResetTrigger("Attack");
+        anim.ResetTrigger("Hit");
         StartCoroutine("Think");
     }
 

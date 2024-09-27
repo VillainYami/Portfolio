@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
         Move();
         Jump();
         Attack();
+        Paring();
 
         if (Input.GetKeyDown(KeyCode.Z) && canslide)
             StartCoroutine("CSlide");
@@ -351,6 +352,7 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    #region 잡다한코드
     // 키 입력 금지
     protected IEnumerator EventCStopInput()
     {
@@ -382,4 +384,13 @@ public class Player : MonoBehaviour
             Damaged(50);
         }
     }
+
+    public void Paring()
+    {
+        if (!Input.GetKeyDown(KeyCode.V) || isslide || isdash)
+            return;
+        
+        animator.SetTrigger("Paring");
+    }
+    #endregion
 }

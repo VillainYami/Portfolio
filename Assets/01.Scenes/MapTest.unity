@@ -165,7 +165,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.1, y: 0}
@@ -385,6 +385,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 993387917, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 993387917, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
       propertyPath: m_Size.y
       value: 0.4
       objectReference: {fileID: 0}
@@ -451,6 +455,10 @@ PrefabInstance:
     - target: {fileID: 7743519433593443320, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8822333462442056702, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.055
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
