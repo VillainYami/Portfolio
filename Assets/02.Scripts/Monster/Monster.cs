@@ -35,7 +35,7 @@ public abstract class Monster : MonoBehaviour
     public Transform target;
     public Rigidbody2D rigid;
     public CapsuleCollider2D capsuleColl;
-    public GameObject atkBox;
+    public AttackBoxMonster atkBox;
     public int nextMove;
 
     protected bool canThink = true;
@@ -137,7 +137,6 @@ public abstract class Monster : MonoBehaviour
         StartCoroutine("AttackCoolDown");
         nextMove = 0;
         anim.SetTrigger("Attack");
-        atkBox.SetActive(true);
         ed.state = EnemyState.Attack;
     }
 
@@ -151,7 +150,6 @@ public abstract class Monster : MonoBehaviour
     void EventAttackEnd()
     {
         ed.state = EnemyState.Idle;
-        atkBox.SetActive(false);
         anim.ResetTrigger("Attack");
         anim.ResetTrigger("Hit");
         StartCoroutine("Think");

@@ -37,6 +37,10 @@ public class Player : MonoBehaviour
     protected float unbeatTime = 1f;
     #endregion
 
+    #region 패링
+    public GameObject paringBox;
+    #endregion
+
     #region 슬라이드
     float slidePower = 30f;
     float slideCoolTime = 0.8f;
@@ -391,6 +395,13 @@ public class Player : MonoBehaviour
             return;
         
         animator.SetTrigger("Paring");
+    }
+
+    protected IEnumerator ParingTiming()
+    {
+        paringBox.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        paringBox.SetActive(false);
     }
     #endregion
 }
