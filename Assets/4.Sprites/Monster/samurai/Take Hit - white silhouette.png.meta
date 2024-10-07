@@ -1,12 +1,24 @@
 fileFormatVersion: 2
-guid: 800340ad506f62c4fbe1c509cf465433
+guid: 5f3849e414a15ef4bafea810f38d8e35
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8008791250619013794
+    second: Take Hit - white silhouette_0
+  - first:
+      213: 3891156215361153934
+    second: Take Hit - white silhouette_1
+  - first:
+      213: -7146689698409757683
+    second: Take Hit - white silhouette_2
+  - first:
+      213: 8523606802079886837
+    second: Take Hit - white silhouette_3
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -47,7 +59,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 24
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -62,23 +74,11 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
-  cookieLightType: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -102,11 +102,47 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,7 +154,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -130,7 +166,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -141,148 +177,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Death_4
+      name: Take Hit - white silhouette_0
       rect:
         serializedVersion: 2
-        x: 858
-        y: 83
-        width: 96
-        height: 103
-      alignment: 9
-      pivot: {x: 0.23958333, y: 0.25434217}
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02230b8131a3f6547aa60fa5324b9e33
-      internalID: -503364013
+      spriteID: 8f375b3c8e3935446bdafe30bf2b471f
+      internalID: -8008791250619013794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_5
+      name: Take Hit - white silhouette_1
       rect:
         serializedVersion: 2
-        x: 1108
-        y: 83
-        width: 105
-        height: 110
-      alignment: 9
-      pivot: {x: 0.3513602, y: 0.24098517}
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dfd87b117e7e27479e22061e56d618f
-      internalID: 1852712213
+      spriteID: 3e6c80d7ec5972a45b36324f41958bd4
+      internalID: 3891156215361153934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_6
+      name: Take Hit - white silhouette_2
       rect:
         serializedVersion: 2
-        x: 1358
-        y: 83
-        width: 96
-        height: 122
-      alignment: 9
-      pivot: {x: 0.3703715, y: 0.21909201}
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 529f607f1d957b64f916fa8fa8a36d5f
-      internalID: -1937926999
+      spriteID: c6501f96f8e096b45a62de19816877a8
+      internalID: -7146689698409757683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_1
+      name: Take Hit - white silhouette_3
       rect:
         serializedVersion: 2
-        x: 108
-        y: 83
-        width: 45
-        height: 83
-      alignment: 9
-      pivot: {x: 0.3955848, y: 0.30481288}
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 638b822306f5f3f4b90a74aea1e4cc23
-      internalID: 571490102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Death_2
-      rect:
-        serializedVersion: 2
-        x: 358
-        y: 83
-        width: 52
-        height: 92
-      alignment: 9
-      pivot: {x: 0.36893228, y: 0.26957646}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2dbcbb0548bb81749b455573a9fc4250
-      internalID: 2019383376
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Death_3
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 83
-        width: 66
-        height: 95
-      alignment: 9
-      pivot: {x: 0.34630793, y: 0.25219187}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57cc0f1558b14864db660557655c3345
-      internalID: -497466778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Death_7
-      rect:
-        serializedVersion: 2
-        x: 1608
-        y: 83
-        width: 105
-        height: 13
-      alignment: 9
-      pivot: {x: 0.32153785, y: 1.5572028}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93e95ed1daecdb543b5bdcd33c01f60b
-      internalID: -1874520164
+      spriteID: a5a9885cb3babf646828f45f1828a230
+      internalID: 8523606802079886837
       vertices: []
       indices: 
       edges: []
@@ -298,22 +271,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Death_0: 2042929884
-      Death_1: 571490102
-      Death_10: 1569633948
-      Death_11: 730808312
-      Death_13: -1889370469
-      Death_14: 194246154
-      Death_16: -277381747
-      Death_17: 1563360849
-      Death_2: 2019383376
-      Death_3: -497466778
-      Death_4: -503364013
-      Death_5: 1852712213
-      Death_6: -1937926999
-      Death_7: -1874520164
-      Death_8: 739684492
-      Death_9: -1093721314
+      Take Hit - white silhouette_0: -8008791250619013794
+      Take Hit - white silhouette_1: 3891156215361153934
+      Take Hit - white silhouette_2: -7146689698409757683
+      Take Hit - white silhouette_3: 8523606802079886837
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
