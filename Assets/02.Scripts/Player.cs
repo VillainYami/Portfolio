@@ -380,7 +380,7 @@ public class Player : MonoBehaviour
     {
         rigid.gravityScale = On ? originalGravity : 0;
     }
-
+#if UNITY_EDITOR
     public void PDamage()
     {
         if (Input.GetKeyDown(KeyCode.G))
@@ -388,6 +388,7 @@ public class Player : MonoBehaviour
             Damaged(50);
         }
     }
+#endif
 
     public void Paring()
     {
@@ -403,5 +404,5 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         paringBox.SetActive(false);
     }
-    #endregion
+#endregion
 }

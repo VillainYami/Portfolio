@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AtkBoxPlayer : MonoBehaviour
+public class ParingBoxPlayer : MonoBehaviour
 {
-    public List<Monster> enemies = new List<Monster>();
+    public AttackBoxMonster abm;
     public Player player;
-
-    private void OnEnable() => enemies.Clear();
 
     void Start()
     {
@@ -18,10 +16,8 @@ public class AtkBoxPlayer : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Monster enemy = collision.GetComponent<Monster>();
-            enemies.Add(enemy);
-            float damage = player.Damage;
-            enemy.Damaged(damage);
+            AttackBoxMonster enemy = collision.GetComponent<Monster>().GetComponentInChildren<AttackBoxMonster>();
+
         }
     }
 }
