@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
     #region 패링
     public GameObject paringBox;
+    public bool paring = false;
     #endregion
 
     #region 슬라이드
@@ -401,8 +402,11 @@ public class Player : MonoBehaviour
     protected IEnumerator ParingTiming()
     {
         paringBox.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
+        paring = true;
+        yield return new WaitForSeconds(0.4f);
         paringBox.SetActive(false);
+        paring = false;
     }
+
 #endregion
 }

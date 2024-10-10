@@ -17,7 +17,14 @@ public class AttackBoxMonster : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && player == null)
         {
             player = collision.GetComponent<Player>();
-            player.Damaged(enemy.ed.damage);
+            if (player.paring != false)
+            {
+                player.Damaged(0);
+            }
+            else
+            {
+                player.Damaged(enemy.ed.damage);
+            }
         }
     }
 

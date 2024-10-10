@@ -12,12 +12,12 @@ public class ParingBoxPlayer : MonoBehaviour
         player = transform.parent.GetComponent<Player>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("ABM") && abm == null)
         {
-            AttackBoxMonster enemy = collision.GetComponent<Monster>().GetComponentInChildren<AttackBoxMonster>();
-
+            abm = col.GetComponent<AttackBoxMonster>();
         }
     }
+
 }
