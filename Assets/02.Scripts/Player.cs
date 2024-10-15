@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     [HideInInspector] private PlayerData pd;
     [HideInInspector] public PlayerDir playerDir = PlayerDir.right;
+    public NPCMission npc;
     protected PlayerDir playerDir_past;
 
     public AtkBoxPlayer atBox;
@@ -376,6 +377,11 @@ public class Player : MonoBehaviour
             jumped = false;
             jumCount = 0;
         }
+        if (col.gameObject == col.gameObject.CompareTag("NPC"))
+        {
+            npc = gameObject.GetComponent<NPCMission>();
+            NPCTalk();
+        }
     }
     protected void SetGravity(bool On)
     {
@@ -408,5 +414,12 @@ public class Player : MonoBehaviour
         paring = false;
     }
 
+    public void NPCTalk()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            npc.npctalk = true;
+        }
+    }
 #endregion
 }

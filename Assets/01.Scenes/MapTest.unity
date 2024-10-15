@@ -189,8 +189,54 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &265590804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 265590805}
+  - component: {fileID: 265590806}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &265590805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265590804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.045557883, y: 2.8246093, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &265590806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265590804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c8353bf573f284999ca88ddad12fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 0}
+  npctalk: {fileID: 956444378}
 --- !u!114 &756803557 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2627524715703007214, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
@@ -239,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5548656480271618419, guid: b1467de907f5b8741ae336cbb1cb9360, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5548656480271618419, guid: b1467de907f5b8741ae336cbb1cb9360, type: 3}
       propertyPath: m_AnchorMax.x
@@ -336,7 +382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &956444379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -413,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2627524715703007210, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2627524715703007210, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -458,6 +504,10 @@ PrefabInstance:
     - target: {fileID: 2627524715703007211, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627524715703007214, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
+      propertyPath: npc
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7743519433593443320, guid: b5f12ae9cd3c70d41b65923d7c706a09, type: 3}
       propertyPath: m_IsActive
@@ -626,7 +676,7 @@ Transform:
   - {fileID: 1781512757}
   - {fileID: 1970316717}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1630725874
 GameObject:
@@ -717,8 +767,8 @@ Canvas:
   m_GameObject: {fileID: 1630725874}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1272917457}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -8616,7 +8666,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.4
+  m_fontSize: 44.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9583,7 +9633,7 @@ Transform:
   m_Children:
   - {fileID: 1630725875}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2050972885
 MonoBehaviour:
@@ -9599,7 +9649,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcChattrans: {fileID: 956444379}
   npcChat: {fileID: 956444378}
-  talkRange: {fileID: 0}
+  talkRange: {fileID: 2050972882}
+  p: {fileID: 0}
+  npctalk: 0
 --- !u!1001 &6319175723186881909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9609,7 +9661,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6319175721948379665, guid: cbf470996af62d14f81ddd52eb7b957b, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6319175721948379665, guid: cbf470996af62d14f81ddd52eb7b957b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9698,7 +9750,7 @@ PrefabInstance:
       objectReference: {fileID: 8264021639089038835}
     - target: {fileID: 8264021637851496606, guid: 4567b9e82ca74134580c13260e8f65a4, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8264021637851496606, guid: 4567b9e82ca74134580c13260e8f65a4, type: 3}
       propertyPath: m_LocalPosition.x
