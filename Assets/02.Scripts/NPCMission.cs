@@ -8,10 +8,9 @@ public class NPCMission : MonoBehaviour
 {
     [SerializeField] private Transform npcChattrans;
     [SerializeField] private GameObject npcChat;
-    [SerializeField] private BoxCollider2D talkRange;
 
     [HideInInspector] public Player p;
-    [HideInInspector]public bool npctalk;
+    private bool npctalk;
 
     float talkboxtime;
     void Start()
@@ -21,13 +20,12 @@ public class NPCMission : MonoBehaviour
     }
 
     void Update()
-    {
-
+    { 
         if (npctalk == true)
         {
             talkboxtime += Time.deltaTime;
         }
-        if (talkboxtime >= 3)
+        if (talkboxtime >= 2)
         {
             npctalk = false;
             talkboxtime = 0;
@@ -44,5 +42,16 @@ public class NPCMission : MonoBehaviour
     public void TalkTrans()
     {
 
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                npctalk = true;
+                Debug.Log("Active");
+            }
+        }
     }
 }

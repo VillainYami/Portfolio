@@ -161,7 +161,7 @@ public abstract class Monster : MonoBehaviour
         {
             ed.hp -= damage;
 
-            if (ed.state != EnemyState.Attack)
+            /*if (ed.state != EnemyState.Attack)
             {
                 anim.SetTrigger("Hit");
                 ed.state = EnemyState.Hit;
@@ -173,10 +173,20 @@ public abstract class Monster : MonoBehaviour
                 anim.SetTrigger("Hit");
                 ed.state = EnemyState.Hit;
                 rigid.velocity = new Vector2(0, rigid.velocity.y);
-            }
+            }*/
         }
 
         nextMove = 0;
+    }
+
+    public virtual void ParingHit()
+    {
+        if (ed.state == EnemyState.Attack)
+        {
+            anim.SetTrigger("Hit");
+            ed.state = EnemyState.Hit;
+            rigid.velocity = new Vector2(0, rigid.velocity.y);
+        }
     }
 
     void Die()

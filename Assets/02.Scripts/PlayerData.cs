@@ -7,6 +7,9 @@ public class PlayerData : MonoBehaviour
     public UIManager ui;
     public float curHp = 200;
     public float maxHp = 200;
+    public float moveSpeed = 6f;
+    public float atkSpeed = 0.8f;
+    public float damage = 15;
     public float HP
     {
         get { return curHp; }

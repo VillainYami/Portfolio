@@ -13,9 +13,8 @@ public class Player : MonoBehaviour
 
     public RuntimeAnimatorController animators;
 
-    [HideInInspector] private PlayerData pd;
-    [HideInInspector] public PlayerDir playerDir = PlayerDir.right;
-    public NPCMission npc;
+    private PlayerData pd;
+    protected PlayerDir playerDir = PlayerDir.right;
     protected PlayerDir playerDir_past;
 
     public AtkBoxPlayer atBox;
@@ -23,16 +22,15 @@ public class Player : MonoBehaviour
     protected Rigidbody2D rigid;
 
 
-    [HideInInspector]  private float inputX;
-    [HideInInspector]  private float inputY;
+    private float inputX;
+    private float inputY;
 
-    float moveSpeed = 6f;
-    private float damage = 15;
-    public float Damage { get { return damage; } }
+    
+    public float Damage { get { return pd.damage; } }
     protected float originalGravity = 6;
 
     #region 플레이어 상태
-    [HideInInspector] private SpriteRenderer sprd;
+    private SpriteRenderer sprd;
     public bool isDead = false;
     protected bool isUnbeat = false;
     protected float unbeatTime = 1f;
@@ -94,7 +92,7 @@ public class Player : MonoBehaviour
         inputY = Input.GetAxisRaw("Vertical");
 
         JumpAnimation();
-
+        SetAtkSpeed(pd.atkSpeed);
         if (!canInput)
             return;
 
@@ -166,7 +164,7 @@ public class Player : MonoBehaviour
         if (isslide || isdash || animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
             return;
 
-        rigid.velocity = new Vector2(inputX * moveSpeed, rigid.velocity.y);
+        rigid.velocity = new Vector2(inputX * pd.moveSpeed, rigid.velocity.y);
 
         if (inputX == 0)
             animator.SetBool("Move", false);
@@ -238,7 +236,7 @@ public class Player : MonoBehaviour
         //공격시, 바라보는 방향을 입력하고있으면 전진
         if ((inputX > 0 && playerDir_past == PlayerDir.right) ||
             (inputX < 0 && playerDir_past == PlayerDir.left))
-            rigid.velocity = transform.right * moveSpeed + transform.up * rigid.velocity.y;
+            rigid.velocity = transform.right * pd.moveSpeed + transform.up * rigid.velocity.y;
     }
 
     //공격 데미지 판정 event
@@ -248,6 +246,11 @@ public class Player : MonoBehaviour
         {
             SetDamage(enemy, Damage);
         }
+    }
+
+    void SetAtkSpeed(float speed)
+    {
+        animator.SetFloat("AtkSpeed",speed);
     }
 
     public void SetDamage(Monster enemy, float damage) => enemy.Damaged(damage);
@@ -377,11 +380,6 @@ public class Player : MonoBehaviour
             jumped = false;
             jumCount = 0;
         }
-        if (col.gameObject == col.gameObject.CompareTag("NPC"))
-        {
-            npc = gameObject.GetComponent<NPCMission>();
-            NPCTalk();
-        }
     }
     protected void SetGravity(bool On)
     {
@@ -414,12 +412,5 @@ public class Player : MonoBehaviour
         paring = false;
     }
 
-    public void NPCTalk()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            npc.npctalk = true;
-        }
-    }
 #endregion
 }

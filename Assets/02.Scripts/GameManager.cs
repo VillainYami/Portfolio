@@ -5,11 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Player p;
-    public GameObject npctalk;
+
+    public static GameManager instance;
 
     private void Awake()
     {
-        
+        instance = this;    
     }
 
     void Start()
