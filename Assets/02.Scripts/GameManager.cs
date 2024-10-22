@@ -1,16 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Player p;
+    private Player p;
 
     public static GameManager instance;
 
     private void Awake()
     {
-        instance = this;    
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
