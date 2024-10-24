@@ -106,7 +106,7 @@ MonoBehaviour:
   target: {fileID: 0}
   rigid: {fileID: 8264021637851496602}
   capsuleColl: {fileID: 8264021637851496607}
-  atkBox: {fileID: 8264021639031535771}
+  atkBox: {fileID: 8264021639031535774}
   nextMove: 0
 --- !u!95 &8264021637851496603
 Animator:
@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f61ab6ddc10494d8e8d2714bf63b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!60 &8264021639031535775
 PolygonCollider2D:
   m_ObjectHideFlags: 0

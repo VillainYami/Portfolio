@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
 
     public RuntimeAnimatorController animators;
 
-    private PlayerData pd;
+    private PlayerUI pd;
+    private DataManager dm;
     protected PlayerDir playerDir = PlayerDir.right;
     protected PlayerDir playerDir_past;
 
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
     private float inputY;
 
     
-    public float Damage { get { return pd.damage; } }
+    public float Damage { get { return dm.nowPlayer.damage; } }
     protected float originalGravity = 6;
 
     #region 플레이어 상태
@@ -72,7 +73,8 @@ public class Player : MonoBehaviour
         GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
-        pd = transform.GetChild(0).GetComponent<PlayerData>();
+        pd = transform.GetChild(0).GetComponent<PlayerUI>();
+        dm = GameObject.Find("DataManager").GetComponent<DataManager>();
         sprd = GetComponent<SpriteRenderer>();
 
         animator.runtimeAnimatorController = animators;
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour
         inputY = Input.GetAxisRaw("Vertical");
 
         JumpAnimation();
-        SetAtkSpeed(pd.atkSpeed);
+        SetAtkSpeed(dm.nowPlayer.atkSpeed);
         if (!canInput)
             return;
 
@@ -164,7 +166,7 @@ public class Player : MonoBehaviour
         if (isslide || isdash || animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
             return;
 
-        rigid.velocity = new Vector2(inputX * pd.moveSpeed, rigid.velocity.y);
+        rigid.velocity = new Vector2(inputX * dm.nowPlayer.moveSpeed, rigid.velocity.y);
 
         if (inputX == 0)
             animator.SetBool("Move", false);
@@ -236,7 +238,7 @@ public class Player : MonoBehaviour
         //공격시, 바라보는 방향을 입력하고있으면 전진
         if ((inputX > 0 && playerDir_past == PlayerDir.right) ||
             (inputX < 0 && playerDir_past == PlayerDir.left))
-            rigid.velocity = transform.right * pd.moveSpeed + transform.up * rigid.velocity.y;
+            rigid.velocity = transform.right * dm.nowPlayer.moveSpeed + transform.up * rigid.velocity.y;
     }
 
     //공격 데미지 판정 event

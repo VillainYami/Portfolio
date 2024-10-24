@@ -14,6 +14,11 @@ public class DataManager : MonoBehaviour
         public string name;
         public int level = 1;
         public int coin = 1;
+        public float curHp = 200;
+        public float maxHp = 200;
+        public float moveSpeed = 6f;
+        public float atkSpeed = 0.8f;
+        public float damage = 15;
     }
 
     private void Awake()
@@ -29,7 +34,8 @@ public class DataManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         #endregion
-        path = Application.persistentDataPath + "/save";
+        path = Application.persistentDataPath + "/PlayerDataSave";
+        print(path);
     }
 
     void Start()

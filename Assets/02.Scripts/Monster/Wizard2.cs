@@ -15,6 +15,7 @@ public class Wizard2 : Monster
         ed.atkReady = 1;
         ed.atkRange = 2.5f;
         ed.atkDelay = 2;
+        ed.animDelay = 0.7f;
     }
 
 }

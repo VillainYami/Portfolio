@@ -13,6 +13,7 @@ public struct EnemyData
     public float atkRange;
     public float atkDelay;
     public float atkReady;
+    public float animDelay;
 
     public bool isDead;
 }
@@ -80,7 +81,7 @@ public abstract class Monster : MonoBehaviour
 
         if (ed.isDead == true || ed.hp <= 0)
             Die();
-
+        SetAtkSpeed(ed.animDelay);
         if (Vector3.Distance(transform.position, target.position) < ed.atkRange)
         {
             rigid.velocity = new Vector2(0, rigid.velocity.y);
@@ -153,6 +154,10 @@ public abstract class Monster : MonoBehaviour
         anim.ResetTrigger("Attack");
         anim.ResetTrigger("Hit");
         StartCoroutine("Think");
+    }
+    void SetAtkSpeed(float speed)
+    {
+        anim.SetFloat("AtkSpeed", speed);
     }
 
     public virtual void Damaged(float damage)

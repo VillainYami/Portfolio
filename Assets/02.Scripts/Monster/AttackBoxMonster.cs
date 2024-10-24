@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackBoxMonster : MonoBehaviour
 {
-    Player player;
+    public Player player;
     Monster enemy;
 
     private void Start()

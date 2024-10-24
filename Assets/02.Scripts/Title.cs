@@ -11,6 +11,7 @@ public class Title : MonoBehaviour
     public GameObject creat;	
     public TMP_Text[] slotText;		
     public TMP_Text newPlayerName;
+    public GameObject panel;
     bool[] savefile = new bool[4];
     void Start()
     {
@@ -19,31 +20,30 @@ public class Title : MonoBehaviour
         {
             if (File.Exists(DataManager.instance.path + $"{i}"))	// 데이터가 있는 경우
             {
-                savefile[i] = true;			// 해당 슬롯 번호의 bool배열 true로 변환
-                DataManager.instance.nowSlot = i;	// 선택한 슬롯 번호 저장
-                DataManager.instance.LoadData();	// 해당 슬롯 데이터 불러옴
-                slotText[i].text = DataManager.instance.nowPlayer.name;	// 버튼에 닉네임 표시
+                savefile[i] = true;
+                DataManager.instance.nowSlot = i;
+                DataManager.instance.LoadData();
+                slotText[i].text = DataManager.instance.nowPlayer.name;
             }
-            else	// 데이터가 없는 경우
+            else
             {
-                slotText[i].text = "비어있음";
+                slotText[i].text = "Empty";
             }
         }
-        // 불러온 데이터를 초기화시킴.(버튼에 닉네임을 표현하기위함이었기 때문)
         DataManager.instance.DataClear();
     }
-    public void Slot(int number)	// 슬롯의 기능 구현
+    public void Slot(int number)
     {
         DataManager.instance.nowSlot = number;	// 슬롯의 번호를 슬롯번호로 입력함.
 
-        if (savefile[number])	// bool 배열에서 현재 슬롯번호가 true라면 = 데이터 존재한다는 뜻
+        if (savefile[number])
         {
             DataManager.instance.LoadData();	// 데이터를 로드하고
-            GoGame();	// 게임씬으로 이동
+            GoGame();
         }
-        else	// bool 배열에서 현재 슬롯번호가 false라면 데이터가 없다는 뜻
+        else
         {
-            Creat();	// 플레이어 닉네임 입력 UI 활성화
+            Creat();
         }
     }
 
@@ -59,7 +59,21 @@ public class Title : MonoBehaviour
             DataManager.instance.nowPlayer.name = newPlayerName.text; // 입력한 이름을 복사해옴
             DataManager.instance.SaveData(); // 현재 정보를 저장함.
         }
-        SceneManager.LoadScene(1); // 게임씬으로 이동
+        SceneManager.LoadScene(1);
     }
 
+    public void StartBT()
+    {
+        panel.SetActive(true);
+    }
+
+    public void LoadBT()
+    {
+        panel.SetActive(true);
+    }
+
+    public void OpsionsBT()
+    {
+
+    }
 }
