@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        p = GameObject.FindWithTag("Player").GetComponent<Player>();
+        //p = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void Update()

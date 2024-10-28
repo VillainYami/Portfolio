@@ -49,15 +49,24 @@ public class Title : MonoBehaviour
 
     public void Creat()	// 플레이어 닉네임 입력 UI를 활성화하는 메소드
     {
-        creat.gameObject.SetActive(true);
+        creat.SetActive(true);
+    }
+    public void CreatCancelBT()
+    {
+        creat.SetActive(false);
     }
 
     public void GoGame()	// 게임씬으로 이동
     {
         if (!savefile[DataManager.instance.nowSlot])	// 현재 슬롯번호의 데이터가 없다면
         {
-            DataManager.instance.nowPlayer.name = newPlayerName.text; // 입력한 이름을 복사해옴
-            DataManager.instance.SaveData(); // 현재 정보를 저장함.
+            if (newPlayerName == null) return;
+
+            else
+            {
+                DataManager.instance.nowPlayer.name = newPlayerName.text; // 입력한 이름을 복사해옴
+                DataManager.instance.SaveData(); // 현재 정보를 저장함.
+            }
         }
         SceneManager.LoadScene(1);
     }

@@ -8,11 +8,11 @@ public class NPCMission : MonoBehaviour
 {
     [SerializeField] private Transform npcChattrans;
     [SerializeField] private GameObject npcChat;
+    private bool npctalk;
+    float talkboxtime;
 
     [HideInInspector] public Player p;
-    private bool npctalk;
-
-    float talkboxtime;
+    public GameObject guidebutton;
     void Start()
     {
         p = GameObject.Find("Player").GetComponent<Player>();
@@ -32,6 +32,7 @@ public class NPCMission : MonoBehaviour
         }
         NPCChatOnOFF(npctalk);
         npcChattrans.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3);
+        guidebutton.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
     }
 
     public void NPCChatOnOFF(bool npctalk)
@@ -39,19 +40,24 @@ public class NPCMission : MonoBehaviour
         npcChat.SetActive(npctalk);
     }
 
-    public void TalkTrans()
-    {
-
-    }
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
+            guidebutton.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 npctalk = true;
                 Debug.Log("Active");
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            guidebutton.SetActive(false);
         }
     }
 }

@@ -16,5 +16,6 @@ public class WizardFire : Monster
         ed.atkRange = 2.5f;
         ed.atkDelay = 2;
         ed.animDelay = 0.7f;
+        ed.giveExp = 10;
     }
 }

@@ -4,17 +4,37 @@ using UnityEngine;
 
 public class Cam : MonoBehaviour
 {
-    [HideInInspector] Camera cam;
-    [HideInInspector] public GameObject ppov;
+    [SerializeField] BoxCollider2D camLimit;
+    [SerializeField] Transform target;
+    Camera cam;
+    float minX;
+    float maxX;
+    float minY;
+    float maxY;
 
     void Start()
     {
         cam = GetComponent<Camera>();
-        ppov = GameObject.Find("Player");
+        Bounds b = camLimit.bounds;
+        minX = b.min.x + (cam.orthographicSize * 1920 / 1080);
+        maxX = b.max.x - (cam.orthographicSize * 1920 / 1080);
+        minY = b.min.y + cam.orthographicSize;
+        maxY = b.max.y - cam.orthographicSize;
     }
 
     void Update()
     {
-        cam.transform.position = new Vector3(ppov.transform.position.x,ppov.transform.position.y,-10);
+        target = FindObjectOfType<Player>().transform;
+        if (target == null)
+        {
+            target = GameObject.FindWithTag("Player").transform;
+        }
+
+        Vector3 pos = target.position;
+        pos.z = -10;
+        pos.y += 2;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        transform.position = Vector3.Lerp(transform.position, pos, 5f * Time.deltaTime);
     }
 }

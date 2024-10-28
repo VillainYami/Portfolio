@@ -14,6 +14,7 @@ public struct EnemyData
     public float atkDelay;
     public float atkReady;
     public float animDelay;
+    public float giveExp;
 
     public bool isDead;
 }
@@ -32,6 +33,7 @@ public abstract class Monster : MonoBehaviour
     public EnemyData ed = new EnemyData();
     [SerializeField] private float seehp;
 
+    public DataManager playerdata;
     public Animator anim;
     public Transform target;
     public Rigidbody2D rigid;
@@ -51,6 +53,7 @@ public abstract class Monster : MonoBehaviour
     void Start()
     {
         Init();
+        playerdata = GameObject.Find("DataManager").GetComponent<DataManager>();
         target = GameObject.FindWithTag("Player").transform;
         Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), target.gameObject.GetComponent<CapsuleCollider2D>());
     }
@@ -81,7 +84,9 @@ public abstract class Monster : MonoBehaviour
 
         if (ed.isDead == true || ed.hp <= 0)
             Die();
+
         SetAtkSpeed(ed.animDelay);
+        
         if (Vector3.Distance(transform.position, target.position) < ed.atkRange)
         {
             rigid.velocity = new Vector2(0, rigid.velocity.y);
@@ -104,7 +109,7 @@ public abstract class Monster : MonoBehaviour
         transform.localScale = flipX ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
         seehp = ed.hp;
     }
-
+    #region 움직임관련
     public IEnumerator Think()
     {
         canThink = false;
@@ -132,7 +137,9 @@ public abstract class Monster : MonoBehaviour
 
         Invoke("Think", 2);
     }
+    #endregion
 
+    #region 공격관련
     protected virtual void AttackStart()
     {
         StartCoroutine("AttackCoolDown");
@@ -183,7 +190,6 @@ public abstract class Monster : MonoBehaviour
 
         nextMove = 0;
     }
-
     public virtual void ParingHit()
     {
         if (ed.state == EnemyState.Attack)
@@ -191,6 +197,16 @@ public abstract class Monster : MonoBehaviour
             anim.SetTrigger("Hit");
             ed.state = EnemyState.Hit;
             rigid.velocity = new Vector2(0, rigid.velocity.y);
+        }
+    }
+    #endregion
+
+    #region 죽음관련
+    void GiveExpPlayer(float exp)
+    {
+        if (ed.state == EnemyState.Dead)
+        {
+            playerdata.nowPlayer.curExp += exp;
         }
     }
 
@@ -201,10 +217,11 @@ public abstract class Monster : MonoBehaviour
         ed.state = EnemyState.Dead;
         rigid.velocity = Vector2.zero;
         rigid.bodyType = RigidbodyType2D.Static;
-        capsuleColl.isTrigger = true;
-        Destroy(gameObject, 2f);
+        capsuleColl.enabled = false;
+        GiveExpPlayer(ed.giveExp);
+        Destroy(gameObject, 1.5f);
     }
-
+    #endregion
     void PlatformCheck()
     {
         Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 0.75f, rigid.position.y - 0.5f);
