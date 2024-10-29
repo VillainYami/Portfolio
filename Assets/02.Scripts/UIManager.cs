@@ -35,16 +35,16 @@ public class UIManager : MonoBehaviour
     void SeeHP()
     {
         hpBar.fillAmount = dm.nowPlayer.curHp / dm.nowPlayer.maxHp;
-        hptxt.text = $"{dm.nowPlayer.curHp}/{dm.nowPlayer.maxHp} ";
+        hptxt.text = $"HP {dm.nowPlayer.curHp}/{dm.nowPlayer.maxHp} ";
     }
     void SeeEXP()
     {
         expBar.fillAmount = dm.nowPlayer.curExp / dm.nowPlayer.maxExp;
-        exptxt.text = $"{dm.nowPlayer.curExp}/{dm.nowPlayer.maxExp}";
+        exptxt.text = $"EXP {dm.nowPlayer.curExp}/{dm.nowPlayer.maxExp}";
     }
     void SeeLevelandName()
     {
-        leveltxt.text = $"{dm.nowPlayer.level}";
+        leveltxt.text = $"LV   {dm.nowPlayer.level}";
         nametxt.text = $"{dm.nowPlayer.name}";
     }
 

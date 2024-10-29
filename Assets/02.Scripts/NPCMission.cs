@@ -15,7 +15,6 @@ public class NPCMission : MonoBehaviour
     public GameObject guidebutton;
     void Start()
     {
-        p = GameObject.Find("Player").GetComponent<Player>();
         npctalk = false;
     }
 
@@ -39,9 +38,9 @@ public class NPCMission : MonoBehaviour
     {
         npcChat.SetActive(npctalk);
     }
-
     private void OnTriggerStay2D(Collider2D other)
     {
+        p = GameObject.Find("Player").GetComponent<Player>();
         if (other.gameObject.tag == "Player")
         {
             guidebutton.SetActive(true);
@@ -52,7 +51,6 @@ public class NPCMission : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
