@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seehp: 0
+  playerdata: {fileID: 0}
   anim: {fileID: 8264021637851496603}
   target: {fileID: 0}
   rigid: {fileID: 8264021637851496602}
