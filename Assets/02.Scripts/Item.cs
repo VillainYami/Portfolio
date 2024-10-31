@@ -1,34 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
-public class Item : MonoBehaviour
+public enum ItemCode
 {
-    public Image itemImage;
+    Posion = 1,
+    Weapon = 2,
+    Gem = 3
+}
 
-    void Start()
+public abstract class Item : MonoBehaviour
+{
+    public DataManager dm;
+    public Sprite itemImage;
+    public string itemName;
+    public bool isGet = false;
+
+    private void OnTriggerStay2D(Collider2D col)
     {
-
-    }
-
-    void Update()
-    {
-        if (itemImage != null)
+        if (col.CompareTag("Player") && !isGet)
         {
-            SetColor(1);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                isGet = true;
+            }
         }
-        else
-        {
-            SetColor(0);
-        }
-    }
-    // 아이템 이미지의 투명도 조절
-    private void SetColor(float _alpha)
-    {
-        Color color = itemImage.color;
-        color.a = _alpha;
-        itemImage.color = color;
     }
 }

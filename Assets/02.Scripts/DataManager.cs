@@ -13,14 +13,25 @@ public class DataManager : MonoBehaviour
     {
         public string name;
         public int level = 1;
+        public int coin = 1;
         public float maxExp = 100;
         public float curExp = 0;
-        public int coin = 1;
         public float curHp = 200;
         public float maxHp = 200;
         public float moveSpeed = 6f;
         public float atkSpeed = 0.8f;
         public float damage = 15;
+
+        public PlayerItem nowPlayerItem = new PlayerItem();
+    }
+
+    public class PlayerItem
+    {
+        public bool isGetSlot;
+        public string itemName;
+        public int itemCode;
+        public int nowCount = 0;
+
     }
 
     private void Awake()
@@ -49,7 +60,8 @@ public class DataManager : MonoBehaviour
     public void SaveData()
     {
         string data = JsonUtility.ToJson(nowPlayer);
-        File.WriteAllText(path + nowSlot.ToString(), data);
+        string itemdata = JsonUtility.ToJson(nowPlayer.nowPlayerItem);
+        File.WriteAllText(path + nowSlot.ToString(), data + itemdata);
     }
 
     public void LoadData()
