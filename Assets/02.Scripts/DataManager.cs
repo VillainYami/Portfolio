@@ -7,7 +7,9 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
     public PlayerData nowPlayer = new PlayerData();
+    public PlayerItem nowPlayerItem = new PlayerItem();
     public string path;
+    public string ipath;
     public int nowSlot;
     public class PlayerData
     {
@@ -22,7 +24,6 @@ public class DataManager : MonoBehaviour
         public float atkSpeed = 0.8f;
         public float damage = 15;
 
-        public PlayerItem nowPlayerItem = new PlayerItem();
     }
 
     public class PlayerItem
@@ -48,31 +49,32 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         #endregion
         path = Application.persistentDataPath + "/PlayerDataSave";
+        ipath = Application.persistentDataPath + "/PlayerItemSave";
         print(path);
-    }
-
-    void Start()
-    {
-        
+        print(ipath);
     }
 
     #region 데이터 세이브 and 로드
     public void SaveData()
     {
         string data = JsonUtility.ToJson(nowPlayer);
-        string itemdata = JsonUtility.ToJson(nowPlayer.nowPlayerItem);
-        File.WriteAllText(path + nowSlot.ToString(), data + itemdata);
+        string idata = JsonUtility.ToJson(nowPlayerItem);
+        File.WriteAllText(path + nowSlot.ToString(), data);
+        File.WriteAllText(ipath + nowSlot.ToString(), idata);
     }
 
     public void LoadData()
     {
         string data = File.ReadAllText(path + nowSlot.ToString());
+        string idata = File.ReadAllText(ipath + nowSlot.ToString());
         nowPlayer = JsonUtility.FromJson<PlayerData>(data);
+        nowPlayerItem = JsonUtility.FromJson<PlayerItem>(idata);
     }
     public void DataClear()
     {
         nowSlot = -1;
         nowPlayer = new PlayerData();
+        nowPlayerItem = new PlayerItem();
     }
     #endregion
 
